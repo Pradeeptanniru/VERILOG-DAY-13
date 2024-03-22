@@ -1,0 +1,34 @@
+//DESIGN CODE
+
+module sixteenbitsubtractor(
+    input [15:0] a,b,
+    input bin,
+    output [15:0] d,
+    output bout
+    );
+fourbitsubtractor f1(.a(a[3:0]),.b(b[3:0]),.bin(bin),.d(d[3:0]),.bout(w1));
+fourbitsubtractor f2(.a(a[7:4]),.b(b[7:4]),.bin(w1),.d(d[7:4]),.bout(w2)); 
+fourbitsubtractor f3(.a(a[11:8]),.b(b[11:8]),.bin(w2),.d(d[11:8]),.bout(w3)); 
+fourbitsubtractor f4(.a(a[15:12]),.b(b[15:12]),.bin(w3),.d(d[15:12]),.bout(bout));      
+endmodule
+
+
+
+
+
+//TEST BENCH
+
+module sixteenbitsubtractor_tb;
+reg [15:0]a;
+reg [15:0]b;
+reg bin;
+wire [15:0]d;
+wire bout;
+sixteenbitsubtractor uut(.a(a),.b(b),.bin(bin),.d(d),.bout(bout));
+initial begin
+a=16'b0101010101010101;
+b=16'b10101010101010;
+bin=0;
+#100;
+end
+endmodule
